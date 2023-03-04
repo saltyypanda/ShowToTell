@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class ShowToTellGUI extends Application {
@@ -33,13 +34,15 @@ public class ShowToTellGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        BorderPane bp = new BorderPane();
         Button button = makeButton("file:resources/images/food/foodcollage.png");
         
         VBox box = new VBox();
         box.getChildren().add(button);
         box.setAlignment(Pos.CENTER);
+        bp.setCenter(box);
 
-        Scene scene = new Scene(box);
+        Scene scene = new Scene(bp);
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
         primaryStage.centerOnScreen();
