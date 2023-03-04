@@ -1,4 +1,4 @@
-package com.showtotell;
+package com.showtotell.model;
 
 import java.util.Map;
 
