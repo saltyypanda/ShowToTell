@@ -12,6 +12,6 @@ public class WhenClicked implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent arg0) {
-        System.out.println("it worked!");
+        System.out.println(filename);
     }
 }
