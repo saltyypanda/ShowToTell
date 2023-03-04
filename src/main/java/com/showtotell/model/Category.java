@@ -1,3 +1,5 @@
+package com.showtotell;
+
 import java.util.List;
 
 public class Category {
