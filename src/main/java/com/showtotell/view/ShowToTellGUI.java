@@ -8,13 +8,15 @@ import javafx.stage.Stage;
 
 public class ShowToTellGUI extends Application {
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         Label label = new Label("this is a label");
         VBox box = new VBox(label);
         Scene scene = new Scene(box);
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.setMaximized(true);
+        primaryStage.show();
     }
+    
     public static void main(String[] args) {
         launch();
     }
