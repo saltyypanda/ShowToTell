@@ -7,7 +7,7 @@ public class categories {
 
 class food extends categories{
     food(){
-        name = "foodhi";
+        name = "food";
         filename = "food";
     }
 }
