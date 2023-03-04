@@ -33,14 +33,14 @@ public class ShowToTellGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Image one = new Image(null);
+        //Image one = new Image(null);
         GridPane pane = makeImageCollage(null, null, null, null);
 
 
 
 
         Label label = new Label("this is a label");
-        label.setBackground(new Background(new BackgroundImage(, null, null, null, null)));
+        //label.setBackground(new Background(new BackgroundImage(, null, null, null, null)));
 
 
         VBox box = new VBox(label);
