@@ -1,18 +1,11 @@
 package com.showtotell.view;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class ShowToTellGUI extends Application {
@@ -21,6 +14,15 @@ public class ShowToTellGUI extends Application {
         ImageView viewTwo = new ImageView(two);
         ImageView viewThree = new ImageView(three);
         ImageView viewFour = new ImageView(four);
+
+        viewOne.setFitHeight(400);
+        viewOne.setFitWidth(400);
+        viewTwo.setFitHeight(400);
+        viewTwo.setFitWidth(400);
+        viewThree.setFitHeight(400);
+        viewThree.setFitWidth(400);
+        viewFour.setFitHeight(400);
+        viewFour.setFitWidth(400);
 
         GridPane pane = new GridPane();
         pane.add(viewOne, 0, 0);
@@ -33,19 +35,17 @@ public class ShowToTellGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //Image one = new Image(null);
-        GridPane pane = makeImageCollage(null, null, null, null);
+        Image one = new Image("file:resources/images/bananas.jpg");
+        Image two = new Image("file:resources/images/burger.jpg");
+        Image three = new Image("file:resources/images/pancakes.jpg");
+        Image four = new Image("file:resources/images/pasta.jpg");
+        GridPane pane = makeImageCollage(one, two, three, four);
 
+        Button button = 
 
-
-
-        Label label = new Label("this is a label");
-        //label.setBackground(new Background(new BackgroundImage(, null, null, null, null)));
-
-
-        VBox box = new VBox(label);
-        Scene scene = new Scene(box);
+        Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
         primaryStage.setMaximized(true);
         primaryStage.show();
     }
