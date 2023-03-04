@@ -35,13 +35,11 @@ public class ShowToTellGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Image one = new Image("file:resources/images/bananas.jpg");
-        Image two = new Image("file:resources/images/burger.jpg");
-        Image three = new Image("file:resources/images/pancakes.jpg");
-        Image four = new Image("file:resources/images/pasta.jpg");
+        Image one = new Image("file:resources/images/drinks/orangejuice.jpg");
+        Image two = new Image("file:resources/images/drinks/soda.jpg");
+        Image three = new Image("file:resources/images/drinks/tea.jpeg");
+        Image four = new Image("file:resources/images/drinks/water.jpg");
         GridPane pane = makeImageCollage(one, two, three, four);
-
-        Button button = 
 
         Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
