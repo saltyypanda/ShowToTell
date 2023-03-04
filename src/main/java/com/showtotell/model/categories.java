@@ -14,7 +14,7 @@ class food extends categories{
 class drink extends categories{
     drink(){
         name = "drink";
-        filename = "dirnk";
+        filename = "drink";
     }
 }
 class activities extends categories{
