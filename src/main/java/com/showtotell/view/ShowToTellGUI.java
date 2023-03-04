@@ -1,4 +1,4 @@
-package com.showtotell;
+package com.showtotell.view;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
