@@ -2,14 +2,11 @@ package com.showtotell.view;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -17,10 +14,14 @@ public class ShowToTellGUI extends Application {
     private Button makeButton(String filename) {
         Image image = new Image(filename);
         Button button = new Button();
-        button.setBackground(new Background(new BackgroundImage(image,
-                        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         button.setPadding(Insets.EMPTY);
         button.setPrefSize(500, 500);
+
+        ImageView view = new ImageView(image);
+        view.setFitHeight(500);
+        view.setFitWidth(500);
+
+        button.setGraphic(view);
 
         button.setOnAction(new WhenClicked(filename));
         return button;
@@ -32,11 +33,12 @@ public class ShowToTellGUI extends Application {
         
         VBox box = new VBox();
         box.getChildren().add(button);
+        box.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(box);
         primaryStage.setScene(scene);
-        primaryStage.centerOnScreen();
         primaryStage.setMaximized(true);
+        primaryStage.centerOnScreen();
         primaryStage.show();
     }
     
