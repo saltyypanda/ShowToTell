@@ -27,6 +27,8 @@ public class ShowToTellGUI extends Application {
         return button;
     }
 
+    
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Button button = makeButton("file:resources/images/food/foodcollage.png");
