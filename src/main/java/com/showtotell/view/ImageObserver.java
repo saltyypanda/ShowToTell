@@ -1,5 +1,5 @@
 package com.showtotell.view;
 
 public interface ImageObserver {
-    void imageChanged();
+    void imageChanged(String filename);
 }

@@ -22,12 +22,10 @@ public class ShowToTellGUI extends Application {
         view.setFitWidth(500);
 
         button.setGraphic(view);
-
-        button.setOnAction(new WhenClicked(filename));
+        ImageChanger changer = new ImageChanger(view);
+        button.setOnAction(new WhenClicked(filename, changer));
         return button;
     }
-
-    
 
     @Override
     public void start(Stage primaryStage) throws Exception {
