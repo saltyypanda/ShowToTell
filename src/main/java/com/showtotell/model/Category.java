@@ -21,6 +21,9 @@ public class Category {
         return imageFilename;
     }
 
+    public void addChild(Category category) {
+        children.add(category);
+    }
 
 
 }
