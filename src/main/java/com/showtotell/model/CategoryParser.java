@@ -30,9 +30,9 @@ public class CategoryParser {
         Map<String, Category> categoryMap = new HashMap<String, Category>();
         for(String line : text.split("\n")) {
             String[] tokens = line.split(",");
-            String key = tokens[0];
-            childrenMap.put(key, tokens[1]);
-            String image = tokens[2];
+            String key = tokens[0].trim();
+            String image = tokens[1].trim();
+            childrenMap.put(key, tokens[2].trim());
             categoryMap.put(key, new Category(key, image));
         }
         for(String key : categoryMap.keySet()) {
@@ -43,4 +43,5 @@ public class CategoryParser {
         }
         return categoryMap;
     }
+
 }
