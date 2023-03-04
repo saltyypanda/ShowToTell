@@ -23,8 +23,12 @@ public class ShowToTellGUI extends Application {
 
         button.setGraphic(view);
         ImageChanger changer = new ImageChanger(view);
-        button.setOnAction(new WhenClicked(filename, changer));
+        button.setOnAction(new WhenClicked(this, filename, changer));
         return button;
+    }
+
+    public void whenClicked(String filename, ImageChanger changer) {
+        
     }
 
     @Override
