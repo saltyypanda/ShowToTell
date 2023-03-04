@@ -2,6 +2,6 @@ module com.showtotell {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens com.showtotell to javafx.fxml;
-    exports com.showtotell;
+    opens com.showtotell.view to javafx.fxml;
+    exports com.showtotell.view;
 }
