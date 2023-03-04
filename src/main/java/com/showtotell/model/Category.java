@@ -20,4 +20,10 @@ public class Category {
     public String getImageFilename() {
         return imageFilename;
     }
+
+    public void addChild(Category category) {
+        children.add(category);
+    }
+
+
 }
