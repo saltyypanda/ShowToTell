@@ -1,4 +1,5 @@
-module com.showtotell {
+module main.java.com.showtotell {
+    requires transitive javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
 
