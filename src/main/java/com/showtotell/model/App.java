@@ -81,8 +81,9 @@ public class App {
                 changer.imageChanged(node);
             }
             else {
-                System.out.println("Could not find item.");
-                return;
+                currentIndex = 0;
+                Node node = main.get(currentIndex);
+                changer.imageChanged(node);
             }
         }
     }
