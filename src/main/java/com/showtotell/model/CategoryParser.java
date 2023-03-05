@@ -39,12 +39,15 @@ public class CategoryParser {
         }
         for(String key : categoryMap.keySet()) {
             String childrenRaw = childrenMap.get(key);
-            System.out.println(childrenMap.get(key));
-            String[] children = childrenRaw.split("/");
-            for (String child : children) {
-                Category childCategory = categoryMap.get(child);
-                if (childCategory != null) {
-                    categoryMap.get(key).addChild(childCategory);
+            if (childrenRaw != null) {
+                String[] children = childrenRaw.split("/");
+                for (String child : children) {
+                    if (child.equals(key))
+                        continue;
+                    Category childCategory = categoryMap.get(child);
+                    if (childCategory != null) {
+                        categoryMap.get(key).addChild(childCategory);
+                    }
                 }
             }
         }
