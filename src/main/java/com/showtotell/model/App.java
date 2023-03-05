@@ -44,17 +44,19 @@ public class App {
     }
 
     public void pictureClicked(Text text, ImageChanger changer) {
+        Node node;
         String category = text.getText();
-        for (Node node : main) {
-            if (node.getName().toLowerCase().equals(category)) {
-                main = node.getChildren();
+        for (Node item : main) {
+            if (item.getName().toLowerCase().equals(category)) {
+                if (item.getChildren().size() > 0) {
+                    main = item.getChildren();
+                    currentIndex = 0;
+                    node = main.get(currentIndex);
+                    changer.imageChanged(node);
+                }
                 break;
             }
         }
-        currentIndex = 0;
-        Node node = main.get(currentIndex);
-        System.out.println(node);
-        changer.imageChanged(node);
     }
 
     public void thumbClicked() {
