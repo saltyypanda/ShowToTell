@@ -10,12 +10,12 @@ public class ThumbChanger implements ThumbObserver {
     }
 
     @Override
-    public void thumbChanged(boolean bool) {
+    public void thumbChanged(ShowToTellGUI gui, boolean bool) {
         if (bool) {
             box.getChildren().clear();
         }
         else {
-            System.out.println("bad");
+            gui.returnToRoot();
         }
     }
 }

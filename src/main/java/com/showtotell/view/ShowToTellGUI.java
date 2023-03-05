@@ -78,7 +78,7 @@ public class ShowToTellGUI extends Application {
     }
 
     public void thumbClicked(ThumbChanger changer, boolean bool) {
-        changer.thumbChanged(bool);
+        changer.thumbChanged(this, bool);
     }
 
     public void returnToRoot() { // when finding does not work, go back to beginning
