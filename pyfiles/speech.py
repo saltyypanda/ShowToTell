@@ -7,15 +7,13 @@ def voice_to_text():
     while True:
         try:
             with speech_recognition.Microphone() as mic:
-                recognizer.adjust_for_ambient_noise(mic, duration=0.2)
-                audio = recognizer.listen(mic)
-                text = recognizer.recognize_google(audio)
-                text = text.lower()
-                print(text)
+                recognizer.adjust_for_ambient_noise(mic, duration=0.5)
+                audio = recognizer.listen(mic, timeout=4)
+                text = recognizer.recognize_google(audio, language= 'en-US', show_all=False)
+                print(str(text))
 
         except speech_recognition.UnknownValueError():
-            recognizer = speech_recognition.Recognizer()
-            continue
+            break
 
 def main():
     voice_to_text()
