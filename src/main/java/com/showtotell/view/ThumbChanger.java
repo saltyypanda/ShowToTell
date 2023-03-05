@@ -12,10 +12,10 @@ public class ThumbChanger implements ThumbObserver {
     @Override
     public void thumbChanged(boolean bool) {
         if (bool) {
-            box.getChildren().removeAll();
+            box.getChildren().clear();
         }
         else {
-
+            System.out.println("bad");
         }
     }
 }

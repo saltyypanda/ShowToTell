@@ -43,7 +43,7 @@ public class ShowToTellGUI extends Application {
         return button;
     }
 
-    private Button makeThumbButton(String filename, HBox box) {
+    private Button makeThumbButton(String filename, HBox box, boolean bool) {
         Image image = new Image(filename);
         Button button = new Button();
         button.setBackground(new Background(new BackgroundFill(Color.MISTYROSE, null, null)));
@@ -56,15 +56,15 @@ public class ShowToTellGUI extends Application {
 
         button.setGraphic(view);
         ThumbChanger changer = new ThumbChanger(box);
-        button.setOnAction(new ThumbClicked(this, changer));
+        button.setOnAction(new ThumbClicked(this, changer, bool));
         return button;
     }
 
     public HBox makeThumbBox() {
         HBox hbox = new HBox();
 
-        Button thumbsUp = makeThumbButton("file:resources/images/thumbs/thumbsup.png", hbox);
-        Button thumbsDown = makeThumbButton("file:resources/images/thumbs/thumbsdown.png", hbox);
+        Button thumbsUp = makeThumbButton("file:resources/images/thumbs/thumbsup.png", hbox, true);
+        Button thumbsDown = makeThumbButton("file:resources/images/thumbs/thumbsdown.png", hbox, false);
 
         hbox.getChildren().add(thumbsUp);
         hbox.getChildren().add(thumbsDown);
@@ -77,8 +77,12 @@ public class ShowToTellGUI extends Application {
         
     }
 
-    public void thumbClicked(ThumbChanger changer) {
-        
+    public void thumbClicked(ThumbChanger changer, boolean bool) {
+        changer.thumbChanged(bool);
+    }
+
+    public void returnToRoot() { // when finding does not work, go back to beginning
+
     }
 
     @Override
