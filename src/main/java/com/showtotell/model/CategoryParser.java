@@ -32,13 +32,23 @@ public class CategoryParser {
             String[] tokens = line.split(",");
             String key = tokens[0].trim();
             String image = tokens[1].trim();
-            childrenMap.put(key, tokens[2].trim());
             categoryMap.put(key, new Category(key, image));
+            if (tokens.length >= 3) {
+                childrenMap.put(key, tokens[2].trim());
+            }
         }
         for(String key : categoryMap.keySet()) {
-            String[] children = childrenMap.get(key).split("/");
-            for (String child : children) {
-                categoryMap.get(key).addChild(categoryMap.get(child));
+            String childrenRaw = childrenMap.get(key);
+            if (childrenRaw != null) {
+                String[] children = childrenRaw.split("/");
+                for (String child : children) {
+                    if (child.equals(key))
+                        continue;
+                    Category childCategory = categoryMap.get(child);
+                    if (childCategory != null) {
+                        categoryMap.get(key).addChild(childCategory);
+                    }
+                }
             }
         }
         return categoryMap;

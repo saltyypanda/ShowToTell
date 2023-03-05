@@ -8,14 +8,19 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class ShowToTellGUI extends Application {
-    private Button makeButton(String filename) {
+    private Button makeImageButton(String filename) {
         Image image = new Image(filename);
         Button button = new Button();
-        button.setPadding(Insets.EMPTY);
+        button.setPadding(new Insets(30, 30, 30, 30));
         button.setPrefSize(500, 500);
 
         ImageView view = new ImageView(image);
@@ -24,23 +29,80 @@ public class ShowToTellGUI extends Application {
 
         button.setGraphic(view);
         ImageChanger changer = new ImageChanger(view);
-        button.setOnAction(new WhenClicked(this, filename, changer));
+        button.setOnAction(new PictureClicked(this, filename, changer));
+        return button;
+    }
+    
+    private Button makeWordButton(String word) {
+        Button button = new Button();
+        button.setText(word);
+        button.setFont(new Font(100));
+        button.setBackground(new Background(new BackgroundFill(Color.MISTYROSE, null, null)));
+        button.setPadding(new Insets(30, 50, 20, 50));
+
         return button;
     }
 
-    public void whenClicked(String filename, ImageChanger changer) {
+    private Button makeThumbButton(String filename, HBox box, boolean bool) {
+        Image image = new Image(filename);
+        Button button = new Button();
+        button.setBackground(new Background(new BackgroundFill(Color.MISTYROSE, null, null)));
+        button.setPadding(new Insets(30, 50, 0, 50));
+        button.setPrefSize(70, 70);
+
+        ImageView view = new ImageView(image);
+        view.setFitHeight(70);
+        view.setFitWidth(70);
+
+        button.setGraphic(view);
+        ThumbChanger changer = new ThumbChanger(box);
+        button.setOnAction(new ThumbClicked(this, changer, bool));
+        return button;
+    }
+
+    public HBox makeThumbBox() {
+        HBox hbox = new HBox();
+
+        Button thumbsUp = makeThumbButton("file:resources/images/thumbs/thumbsup.png", hbox, true);
+        Button thumbsDown = makeThumbButton("file:resources/images/thumbs/thumbsdown.png", hbox, false);
+
+        hbox.getChildren().add(thumbsUp);
+        hbox.getChildren().add(thumbsDown);
+        hbox.setAlignment(Pos.TOP_CENTER);
+
+        return hbox;
+    }
+
+    public void pictureClicked(String filename, ImageChanger changer) {
         
+    }
+
+    public void thumbClicked(ThumbChanger changer, boolean bool) {
+        changer.thumbChanged(bool);
+    }
+
+    public void returnToRoot() { // when finding does not work, go back to beginning
+
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         BorderPane bp = new BorderPane();
-        Button button = makeButton("file:resources/images/food/foodcollage.png");
+        Button button = makeImageButton("file:resources/images/food/foodcollage.png");
         
-        VBox box = new VBox();
-        box.getChildren().add(button);
-        box.setAlignment(Pos.CENTER);
-        bp.setCenter(box);
+        HBox hbox = makeThumbBox();
+
+        Button word = makeWordButton("Food");
+
+        VBox vbox = new VBox();
+        vbox.getChildren().add(word);
+        vbox.getChildren().add(button);
+        vbox.getChildren().add(hbox);
+        vbox.setAlignment(Pos.CENTER);
+
+
+        bp.setCenter(vbox);
+        bp.setBackground(new Background(new BackgroundFill(Color.MISTYROSE, null, null)));
 
         Button check = makeButton("file:resources/images/button/check.png");
         check.setMinSize(20,20);
