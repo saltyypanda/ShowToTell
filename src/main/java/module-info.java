@@ -7,4 +7,5 @@ module main.java.com.showtotell {
 
     opens com.showtotell.view to javafx.fxml;
     exports com.showtotell.view;
+    exports com.showtotell.model;
 }

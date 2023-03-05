@@ -1,5 +1,6 @@
 package com.showtotell.view;
 
+import com.showtotell.model.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,12 +29,12 @@ public class ImageChanger implements ImageObserver {
     }
 
     @Override
-    public void imageChanged(String category, String name) {
-        String filename = "file:resources/images/" + category + "/" + name + ".png";
+    public void imageChanged(Node node) {
+        String filename = "file:resources/images/" + node.getPrevious().getName() + "/" + node.getName() + ".png";
         ImageView view = new ImageView(new Image(filename));
         view.setFitHeight(500);
         view.setFitWidth(500);
         button.setGraphic(view);
-        text.setText(name);
+        text.setText(node.getName());
     }
 }

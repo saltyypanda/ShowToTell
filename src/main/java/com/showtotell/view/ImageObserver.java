@@ -1,5 +1,7 @@
 package com.showtotell.view;
 
+import com.showtotell.model.Node;
+
 public interface ImageObserver {
-    void imageChanged(String category, String filename);
+    void imageChanged(Node node);
 }

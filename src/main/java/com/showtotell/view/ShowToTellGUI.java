@@ -22,6 +22,11 @@ import javafx.stage.Stage;
 public class ShowToTellGUI extends Application {
     private App app;
     private Image mainImage;
+    private ImageChanger changer;
+
+    public ImageChanger getChanger() {
+        return changer;
+    }
 
     private Button makeImageButton(String name) {
         String filename = "file:resources/images/" + name + "/" + name + "collage.png";
@@ -36,7 +41,7 @@ public class ShowToTellGUI extends Application {
 
         button.setGraphic(view);
         Text text = new Text(name);
-        ImageChanger changer = new ImageChanger(button, text);
+        this.changer = new ImageChanger(button, text);
         button.setOnAction(new PictureClicked(this, text, changer));
         return button;
     }
@@ -64,7 +69,7 @@ public class ShowToTellGUI extends Application {
         view.setFitWidth(70);
 
         button.setGraphic(view);
-        ThumbChanger changer = new ThumbChanger(box);
+        ThumbChanger changer = new ThumbChanger(this.app, box);
         button.setOnAction(new ThumbClicked(this, changer, bool));
         return button;
     }
@@ -87,7 +92,7 @@ public class ShowToTellGUI extends Application {
     }
 
     public void thumbClicked(ThumbChanger changer, boolean bool) {
-        changer.thumbChanged(this, bool);
+        changer.thumbChanged(bool);
     }
 
     public void returnToRoot() { // when finding does not work, go back to beginning
@@ -96,7 +101,7 @@ public class ShowToTellGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.app = new App("resources/lists/categories.txt");
+        this.app = new App(this, "resources/lists/categories.txt");
 
         BorderPane bp = new BorderPane();
         Button button = makeImageButton("food");

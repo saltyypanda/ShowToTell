@@ -5,12 +5,18 @@ import java.util.List;
 
 public class Node {
     private final String name;
-    private final String imgFile;
+    private Node previous;
     private List<Node> children;
 
-    public Node(String name, String imgFile) {
+    public Node(String name, Node previous) {
         this.name = name;
-        this.imgFile = imgFile;
+        this.previous = previous;
+        this.children = new ArrayList<>();
+    }
+
+    public Node(String name) {
+        this.name = name;
+        this.previous = null;
         this.children = new ArrayList<>();
     }
 
@@ -18,8 +24,8 @@ public class Node {
         return name;
     }
 
-    public String getImgFile() {
-        return imgFile;
+    public Node getPrevious() {
+        return previous;
     }
 
     public List<Node> getChildren() {
@@ -39,15 +45,5 @@ public class Node {
             }
         }
         return info;
-    }
-
-    public static void main(String[] args) {
-        Node food = new Node("Food", "file:resources/images/food/foodcollage.png");
-        String tokens[] = "bananas burger pancakes pasta".split(" ");
-        for (String item : tokens) {
-            String filename = "file:resources/images/food/" + item + ".png";
-            food.add(new Node(item, filename));
-        }
-        System.out.println(food);
     }
 }

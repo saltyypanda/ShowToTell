@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.showtotell.view.ImageChanger;
+import com.showtotell.view.ShowToTellGUI;
 
 import javafx.scene.text.Text;
 
 public class App {
+    private ShowToTellGUI gui;
     private List<Node> main;
+    private int currentIndex;
 
     public List<Node> makeMain(String filename) throws IOException {
         List<Node> categories = new ArrayList<Node>();
@@ -22,17 +25,19 @@ public class App {
 
         while (br.ready()) {
             String tokens[] = br.readLine().split(",");
-            Node root = new Node(tokens[0], "file:resources/images/" + tokens[0] + "/" + tokens[0] + "collage.png");
+            Node root = new Node(tokens[0]);
             categories.add(root);
             for (int i = 1; i < tokens.length; i++) {
-                root.add(new Node(tokens[i], "file:resources/images/" + tokens[i] + "/" + tokens[i] + ".png"));
+                Node node = new Node(tokens[i], root);
+                root.add(node);
             }
         }
         br.close();
         return categories;
     }
 
-    public App(String filename) throws IOException {
+    public App(ShowToTellGUI gui, String filename) throws IOException {
+        this.gui = gui;
         this.main = makeMain(filename);
     }
 
@@ -44,8 +49,19 @@ public class App {
                 break;
             }
         }
-        String name = main.get(0).getName();
-        changer.imageChanged(category, name);
+        currentIndex = 0;
+        Node node = main.get(currentIndex);
+        System.out.println(node);
+        changer.imageChanged(node);
+    }
+
+    public void thumbClicked() {
+        if (currentIndex < main.size() - 1) {
+            Node node = main.get(currentIndex + 1);
+            System.out.println(node);
+            ImageChanger changer = gui.getChanger();
+            changer.imageChanged(node);
+        }
     }
 
     @Override

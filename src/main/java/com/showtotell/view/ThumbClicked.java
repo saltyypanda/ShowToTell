@@ -17,6 +17,5 @@ public class ThumbClicked implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         gui.thumbClicked(changer, correct);
-        System.out.println("it worked!");
     }
 }
