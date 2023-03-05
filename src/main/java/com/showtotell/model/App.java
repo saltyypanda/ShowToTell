@@ -9,6 +9,8 @@ import java.util.List;
 
 import com.showtotell.view.ImageChanger;
 
+import javafx.scene.text.Text;
+
 public class App {
     private List<Node> main;
 
@@ -34,15 +36,16 @@ public class App {
         this.main = makeMain(filename);
     }
 
-    public void pictureClicked(String name, ImageChanger changer) {
+    public void pictureClicked(Text text, ImageChanger changer) {
+        String category = text.getText();
         for (Node node : main) {
-            if (node.getName().toLowerCase() == name.toLowerCase()) {
+            if (node.getName().toLowerCase().equals(category)) {
                 main = node.getChildren();
+                break;
             }
         }
-        // String filename = main.get(0).getImgFile();
-        String filename = "file:resources/images/food/pancakes.jpg";
-        changer.imageChanged(filename);
+        String name = main.get(0).getName();
+        changer.imageChanged(category, name);
     }
 
     @Override

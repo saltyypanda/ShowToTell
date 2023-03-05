@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -24,7 +25,6 @@ public class ShowToTellGUI extends Application {
 
     private Button makeImageButton(String name) {
         String filename = "file:resources/images/" + name + "/" + name + "collage.png";
-        System.out.println(filename);
         this.mainImage = new Image(filename);
         Button button = new Button();
         button.setPadding(new Insets(30, 30, 30, 30));
@@ -35,8 +35,9 @@ public class ShowToTellGUI extends Application {
         view.setFitWidth(500);
 
         button.setGraphic(view);
-        ImageChanger changer = new ImageChanger(button);
-        button.setOnAction(new PictureClicked(this, name, changer));
+        Text text = new Text(name);
+        ImageChanger changer = new ImageChanger(button, text);
+        button.setOnAction(new PictureClicked(this, text, changer));
         return button;
     }
     
@@ -81,8 +82,8 @@ public class ShowToTellGUI extends Application {
         return hbox;
     }
 
-    public void pictureClicked(String name, ImageChanger changer) {
-        app.pictureClicked(name, changer);
+    public void pictureClicked(Text text, ImageChanger changer) {
+        app.pictureClicked(text, changer);
     }
 
     public void thumbClicked(ThumbChanger changer, boolean bool) {
