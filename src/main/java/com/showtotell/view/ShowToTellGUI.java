@@ -104,6 +104,12 @@ public class ShowToTellGUI extends Application {
         bp.setCenter(vbox);
         bp.setBackground(new Background(new BackgroundFill(Color.MISTYROSE, null, null)));
 
+        Button check = new Button("file:resources/images/button/check.png");
+        check.setMinSize(20,20);
+        check.setMaxSize(20,20);
+        bp.setBottom(check);
+    
+
         Scene scene = new Scene(bp);
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
