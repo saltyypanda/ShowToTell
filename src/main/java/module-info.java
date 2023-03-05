@@ -1,9 +1,9 @@
 module main.java.com.showtotell {
     requires transitive javafx.graphics;
-    requires javafx.controls;
+    requires transitive javafx.controls;
     requires javafx.fxml;
-    requires javafx.media;
-
+    requires transitive javafx.media;
+    requires transitive javafx.base;
 
     opens com.showtotell.view to javafx.fxml;
     exports com.showtotell.view;

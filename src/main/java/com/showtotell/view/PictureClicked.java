@@ -5,18 +5,17 @@ import javafx.event.EventHandler;
 
 public class PictureClicked implements EventHandler<ActionEvent> {
     private ShowToTellGUI gui;
-    private String filename;
+    private String name;
     private ImageChanger changer;
 
-    public PictureClicked(ShowToTellGUI gui, String filename, ImageChanger changer) {
+    public PictureClicked(ShowToTellGUI gui, String name, ImageChanger changer) {
         this.gui = gui;
-        this.filename = filename;
+        this.name = name;
         this.changer = changer;
     }
 
     @Override
     public void handle(ActionEvent event) {
-        gui.pictureClicked(filename, changer);
-        System.out.println(filename);
+        gui.pictureClicked(name, changer);
     }
 }

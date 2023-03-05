@@ -32,7 +32,7 @@ public class Category {
     }
 
     public static void main(String[] args) {
-        String data = CategoryParser.readFileContents("resources/images/tree.csv");
+        String data = CategoryParser.readFileContents("resources/tree.csv");
         for (Category v : CategoryParser.getCategories(data).values()) {
             System.out.println("\n" + v);
         }

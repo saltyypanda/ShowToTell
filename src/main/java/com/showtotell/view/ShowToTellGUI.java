@@ -1,5 +1,7 @@
 package com.showtotell.view;
 
+import com.showtotell.model.App;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,23 +19,28 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class ShowToTellGUI extends Application {
-    private Button makeImageButton(String filename) {
-        Image image = new Image(filename);
+    private App app;
+    private Image mainImage;
+
+    private Button makeImageButton(String name) {
+        String filename = "file:resources/images/" + name + "/" + name + "collage.png";
+        System.out.println(filename);
+        this.mainImage = new Image(filename);
         Button button = new Button();
         button.setPadding(new Insets(30, 30, 30, 30));
         button.setPrefSize(500, 500);
 
-        ImageView view = new ImageView(image);
+        ImageView view = new ImageView(mainImage);
         view.setFitHeight(500);
         view.setFitWidth(500);
 
         button.setGraphic(view);
-        ImageChanger changer = new ImageChanger(view);
-        button.setOnAction(new PictureClicked(this, filename, changer));
+        ImageChanger changer = new ImageChanger(button);
+        button.setOnAction(new PictureClicked(this, name, changer));
         return button;
     }
     
-    private Button makeWordButton(String word, String filename) {
+    private Button makeWordButton(String word) {
         Button button = new Button();
         button.setText(word);
         button.setFont(new Font(100));
@@ -41,9 +48,6 @@ public class ShowToTellGUI extends Application {
         button.setPadding(new Insets(30, 50, 20, 50));
         button.setPrefSize(500, 100);
 
-        // Media media = new Media(filename);
-        // MediaPlayer player = new MediaPlayer(media);
-        button.setOnAction(new WordClicked(filename));
         return button;
     }
 
@@ -77,8 +81,8 @@ public class ShowToTellGUI extends Application {
         return hbox;
     }
 
-    public void pictureClicked(String filename, ImageChanger changer) {
-        
+    public void pictureClicked(String name, ImageChanger changer) {
+        app.pictureClicked(name, changer);
     }
 
     public void thumbClicked(ThumbChanger changer, boolean bool) {
@@ -91,12 +95,14 @@ public class ShowToTellGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.app = new App("resources/lists/categories.txt");
+
         BorderPane bp = new BorderPane();
-        Button button = makeImageButton("file:resources/images/food/foodcollage.png");
+        Button button = makeImageButton("food");
         
         HBox hbox = makeThumbBox();
 
-        Button word = makeWordButton("Food", "file:resources/audio/food/food.mp3");
+        Button word = makeWordButton("Food");
 
         VBox vbox = new VBox();
         vbox.getChildren().add(word);

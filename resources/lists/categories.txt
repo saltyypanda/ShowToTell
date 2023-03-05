@@ -1,0 +1,3 @@
+food,bananas,burger,pancakes,pasta
+drinks,orangejuice,soda,tea,water
+activity,bathing,eating,sleeping,walking
