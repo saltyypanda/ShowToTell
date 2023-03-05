@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 
 public class App {
     private ShowToTellGUI gui;
+    private List<Node> roots;
     private List<Node> main;
     private int currentIndex;
 
@@ -33,6 +34,7 @@ public class App {
             }
         }
         br.close();
+        this.roots = categories;
         return categories;
     }
 
@@ -56,11 +58,30 @@ public class App {
     }
 
     public void thumbClicked() {
+        ImageChanger changer = gui.getChanger();
         if (currentIndex < main.size() - 1) {
-            Node node = main.get(currentIndex + 1);
-            System.out.println(node);
-            ImageChanger changer = gui.getChanger();
+            currentIndex++;
+            Node node = main.get(currentIndex);
             changer.imageChanged(node);
+        }
+        else {
+            if (main.get(currentIndex).getPrevious() != null) {
+                currentIndex = 0;
+                Node oldNode = main.get(currentIndex).getPrevious();
+                if (oldNode.getPrevious() != null) {
+                    oldNode = oldNode.getPrevious();
+                    main = main.get(currentIndex).getPrevious().getChildren();
+                }
+                else {
+                    main = this.roots;
+                }
+                Node node = main.get(currentIndex);
+                changer.imageChanged(node);
+            }
+            else {
+                System.out.println("Could not find item.");
+                return;
+            }
         }
     }
 

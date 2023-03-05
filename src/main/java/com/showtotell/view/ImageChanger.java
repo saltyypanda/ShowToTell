@@ -30,7 +30,14 @@ public class ImageChanger implements ImageObserver {
 
     @Override
     public void imageChanged(Node node) {
-        String filename = "file:resources/images/" + node.getPrevious().getName() + "/" + node.getName() + ".png";
+        String filename;
+        if (node.getPrevious() != null) {
+            filename = "file:resources/images/" + node.getPrevious().getName() + "/" + node.getName() + ".png";
+        }
+        else {
+            filename = "file:resources/images/" + node.getName() + "/" + node.getName() + "collage.png";
+        }
+
         ImageView view = new ImageView(new Image(filename));
         view.setFitHeight(500);
         view.setFitWidth(500);
