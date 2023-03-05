@@ -33,13 +33,17 @@ public class ShowToTellGUI extends Application {
         return button;
     }
     
-    private Button makeWordButton(String word) {
+    private Button makeWordButton(String word, String filename) {
         Button button = new Button();
         button.setText(word);
         button.setFont(new Font(100));
         button.setBackground(new Background(new BackgroundFill(Color.MISTYROSE, null, null)));
         button.setPadding(new Insets(30, 50, 20, 50));
+        button.setPrefSize(500, 100);
 
+        // Media media = new Media(filename);
+        // MediaPlayer player = new MediaPlayer(media);
+        button.setOnAction(new WordClicked(filename));
         return button;
     }
 
@@ -92,7 +96,7 @@ public class ShowToTellGUI extends Application {
         
         HBox hbox = makeThumbBox();
 
-        Button word = makeWordButton("Food");
+        Button word = makeWordButton("Food", "file:resources/audio/food/food.mp3");
 
         VBox vbox = new VBox();
         vbox.getChildren().add(word);
