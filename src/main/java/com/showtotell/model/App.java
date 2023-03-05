@@ -43,6 +43,10 @@ public class App {
         this.main = makeMain(filename);
     }
 
+    public List<Node> getMain() {
+        return main;
+    }
+
     public void pictureClicked(Text text, ImageChanger changer) {
         Node node;
         String category = text.getText();
@@ -53,6 +57,7 @@ public class App {
                     currentIndex = 0;
                     node = main.get(currentIndex);
                     changer.imageChanged(node);
+                    gui.getWordChanger().wordChanged(node);
                 }
                 break;
             }
@@ -65,6 +70,7 @@ public class App {
             currentIndex++;
             Node node = main.get(currentIndex);
             changer.imageChanged(node);
+            gui.getWordChanger().wordChanged(node);
         }
         else {
             if (main.get(currentIndex).getPrevious() != null) {
@@ -79,11 +85,13 @@ public class App {
                 }
                 Node node = main.get(currentIndex);
                 changer.imageChanged(node);
+                gui.getWordChanger().wordChanged(node);
             }
             else {
                 currentIndex = 0;
                 Node node = main.get(currentIndex);
                 changer.imageChanged(node);
+                gui.getWordChanger().wordChanged(node);
             }
         }
     }

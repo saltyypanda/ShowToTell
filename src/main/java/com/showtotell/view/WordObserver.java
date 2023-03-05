@@ -1,5 +1,7 @@
 package com.showtotell.view;
 
-public class WordObserver {
-    
+import com.showtotell.model.Node;
+
+public interface WordObserver {
+    void wordChanged(Node node);
 }

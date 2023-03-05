@@ -5,6 +5,7 @@ import com.showtotell.model.App;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -17,15 +18,21 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class ShowToTellGUI extends Application {
     private App app;
     private Image mainImage;
     private ImageChanger changer;
+    private WordChanger wordChanger;
 
     public ImageChanger getChanger() {
         return changer;
+    }
+
+    public WordChanger getWordChanger() {
+        return wordChanger;
     }
 
     private Button makeImageButton(String name) {
@@ -52,7 +59,11 @@ public class ShowToTellGUI extends Application {
         button.setFont(new Font(100));
         button.setBackground(new Background(new BackgroundFill(Color.MISTYROSE, null, null)));
         button.setPadding(new Insets(30, 50, 20, 50));
-        button.setPrefSize(500, 100);
+
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        button.setPrefSize(primaryScreenBounds.getWidth(), 100);
+
+        this.wordChanger = new WordChanger(button);
 
         return button;
     }
@@ -95,10 +106,6 @@ public class ShowToTellGUI extends Application {
         changer.thumbChanged(bool);
     }
 
-    public void returnToRoot() { // when finding does not work, go back to beginning
-
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.app = new App(this, "resources/lists/categories.txt");
@@ -108,7 +115,7 @@ public class ShowToTellGUI extends Application {
         
         HBox hbox = makeThumbBox();
 
-        Button word = makeWordButton("Food");
+        Button word = makeWordButton(app.getMain().get(0).getName());
 
         VBox vbox = new VBox();
         vbox.getChildren().add(word);
